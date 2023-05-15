@@ -4,7 +4,14 @@ const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 app.use(cors());
+app.use(express.json());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://backend-chat-9xnn.onrender.com'); // Update with your frontend domain
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 const server = http.createServer(app);
 app.get('/',(req,res)=>{
 res.send('HIIIIIIII')
